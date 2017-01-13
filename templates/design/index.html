@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+<!-- First Photo Grid-->
+<div class="w3-row-padding">
+    {% for object in object_list %}
+    <div class="w3-third w3-container w3-margin-bottom">
+        <a href="{% url 'design:detail' object.id %}"><img src="{{ object.mini_image_title }}" alt="First" style="width:100%" class="w3-hover-opacity"></a>
+        <div class="w3-container w3-white">
+            <p><b>{{ object.name }}</b></p>
+            <p>{{ object.short_description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+    <!-- Images of Me -->
+    <div class="w3-row-padding w3-padding-16" >
+        <div class="w3-col m6">
+            <img src="/static/images/avatar.jpg" alt="Me" id="about">
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-large">
+        <h4><b>About Me</b></h4>
+        <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem
+            ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut
+            rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
+            Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue
+            gravida diam non fringilla.</p>
+        <hr>
+
+        <h4>Technical Skills</h4>
+        <!-- Progress bars / Skills -->
+        <p>Photography</p>
+        <div class="w3-progress-container w3-grey">
+            <div class="w3-progressbar w3-dark-grey" style="width:95%"></div>
+        </div>
+        <p>Web Design</p>
+        <div class="w3-progress-container w3-grey">
+            <div class="w3-progressbar w3-dark-grey" style="width:85%"></div>
+        </div>
+        <p>Photoshop</p>
+        <div class="w3-progress-container w3-grey">
+            <div class="w3-progressbar w3-dark-grey" style="width:80%"></div>
+        </div>
+        <p>
+            <button class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">
+                <i class="fa fa-download w3-margin-right"></i>Download Resume
+            </button>
+        </p>
+        <hr>
+
+    </div>
+</div>
+    {% endblock content %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+{% load static %}
+
+{% block content %}
+
+<div>
+    <h2 class="w3-padding-0"><b>{{object.name}}</b></h2>
+
+    <h6 class="w3-padding-0"><b>{{object.description}}</b></h6>
+
+    <img src={% static 'images/391f9145919627.58414b9619ce0.png' %} style="width:1300px"><br><br>
+    <img src={% static 'images/6a552445919627.58414b961a415.png' %} style="width:1300px"><br><br>
+
+</div>
+
+{% endblock content %}
