@@ -1,6 +1,7 @@
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
+from portfolio import settings
 
 from design.models import PhotoModel
 
@@ -22,7 +23,7 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['/'] = '/'
+        context['media'] = settings.MEDIA_ROOT
         return context
 
 

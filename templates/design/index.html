@@ -9,7 +9,7 @@
 <div class="w3-row-padding">
     {% for object in object_list %}
     <div class="w3-third w3-container w3-margin-bottom">
-        <a href="{% url 'design:detail' object.id %}"><img src="{{ object.mini_image_title }}" alt="First" style="width:100%" class="w3-hover-opacity"></a>
+        <a href="{% url 'design:detail' object.id %}"><img src="{{ object.mini_image_title.url }}" alt="First" style="width:100%" class="w3-hover-opacity"></a>
         <div class="w3-container w3-white">
             <p><b>{{ object.name }}</b></p>
             <p>{{ object.short_description }}</p>
