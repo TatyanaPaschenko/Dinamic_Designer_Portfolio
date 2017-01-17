@@ -22,7 +22,7 @@
     <!-- Images of Me -->
     <div class="w3-row-padding w3-padding-16" >
         <div class="w3-col m6">
-            <img src="/static/images/avatar.jpg" alt="Me" id="about">
+            <img src={% static "images/avatar.jpg" %} alt="Me" id="about"/>
         </div>
     </div>
 
@@ -50,9 +50,9 @@
             <div class="w3-progressbar w3-dark-grey" style="width:80%"></div>
         </div>
         <p>
-            <button class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom">
+            <a class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom" class="button" href="{% url 'design:dowvload' %}">
                 <i class="fa fa-download w3-margin-right"></i>Download Resume
-            </button>
+        </a>
         </p>
         <hr>
 

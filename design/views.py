@@ -1,21 +1,19 @@
+from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.views.generic import ListView
 from django.views.generic import TemplateView
 from portfolio import settings
+from portfolio.settings import STATIC_PATH
+import os
 
 from design.models import PhotoModel
+
 
 
 class MainPageView(ListView):
     template_name = 'design/index.html'
     model = PhotoModel
 
-    # def get_queryset(self):
-    #     qs = super().get_queryset()
-    #     file_id = self.request.GET.get('course_id', None)
-    #     if course_id:
-    #         qs = qs.filter(courses__id=course_id)
-    #     return qs
 
 class ProjectDetailView(DetailView):
     template_name = 'design/detail.html'
@@ -23,7 +21,7 @@ class ProjectDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['media'] = settings.MEDIA_ROOT
+        context['object_list'] = PhotoModel.objects.all()
         return context
 
 
@@ -32,4 +30,10 @@ class LinkView(TemplateView):
     model = PhotoModel
 
 
-
+def download(request):
+    path = os.path.join(STATIC_PATH, 'files', 'cv.pdf')
+    file = open(path, 'rb')
+    body = file.read()
+    response = HttpResponse(body, content_type="application/pdf")
+    response['Content-Disposition'] = 'attachment; filename=cv.pdf'
+    return response

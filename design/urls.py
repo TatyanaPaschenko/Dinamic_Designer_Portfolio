@@ -8,6 +8,7 @@ app_name = 'design'
 urlpatterns = [
     url(r'^$', views.MainPageView.as_view(), name='index'),
     url(r'^(?P<pk>\d+)/$', views.ProjectDetailView.as_view(), name='detail'),
-    url(r'^test/$', views.LinkView.as_view(), name ='test')
+    url(r'^test/$', views.LinkView.as_view(), name ='test'),
+    url(r'^download/$', views.download, name='dowvload')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += staticfiles_urlpatterns()
