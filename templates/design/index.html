@@ -22,7 +22,7 @@
     <!-- Images of Me -->
     <div class="w3-row-padding w3-padding-16" >
         <div class="w3-col m6">
-            <img src={% static "images/avatar.jpg" %} alt="Me" id="about"/>
+            <img src="{% static 'images/avatar.jpg' %}" alt="Me" id="about" class="avatar_about"/>
         </div>
     </div>
 
@@ -37,20 +37,20 @@
 
         <h4>Technical Skills</h4>
         <!-- Progress bars / Skills -->
-        <p>Photography</p>
+        <p>Web Design</p>
         <div class="w3-progress-container w3-grey">
             <div class="w3-progressbar w3-dark-grey" style="width:95%"></div>
         </div>
-        <p>Web Design</p>
+        <p>Adobe Photoshop</p>
         <div class="w3-progress-container w3-grey">
             <div class="w3-progressbar w3-dark-grey" style="width:85%"></div>
         </div>
-        <p>Photoshop</p>
+        <p>Adobe Illustrator</p>
         <div class="w3-progress-container w3-grey">
             <div class="w3-progressbar w3-dark-grey" style="width:80%"></div>
         </div>
         <p>
-            <a class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom" class="button" href="{% url 'design:dowvload' %}">
+            <a class="w3-btn w3-dark-grey w3-padding-large w3-margin-top w3-margin-bottom" class="button" href="{% url 'design:download' %}">
                 <i class="fa fa-download w3-margin-right"></i>Download Resume
         </a>
         </p>
@@ -59,3 +59,19 @@
     </div>
 </div>
     {% endblock content %}
+
+{% block contact_me %}
+{% include 'include/message_include.html' %}
+        <form method="post" action="form.asp" target="_blank" >
+            {% csrf_token %}
+            {% for field in form %}
+            <label>{{ field.label }}</label><br>
+            <div >
+            <i class="field" required >{{ field }}</i><br><br>
+            </div>
+            {% endfor %}
+            <br>
+            <input type="submit" class="w3-btn w3-padding-large w3-margin-bottom button_send_message" class="button"  value="Send Message" />
+        </form>
+{% endblock contact_me %}
+

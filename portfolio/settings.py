@@ -132,3 +132,9 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+ADMINS = [('designer', 'an.shvetsova@gmail.com'), ('admin', 'vivid.tanya@gmail.com')]
+
+EMAIL_HOST = "127.0.0.1"
+
+EMAIL_PORT = "1025"

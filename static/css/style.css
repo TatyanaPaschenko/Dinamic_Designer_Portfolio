@@ -1,0 +1,19 @@
+.field_class{
+    width: 1250px;
+    height: 40px;
+    border-radius: 0;
+}
+
+.button_send_message{
+    width: 200px;
+    height: 48px;
+    background-color: #000001;
+    border-radius: 0;
+    border-color: #000001;
+    color: #FFFFFF;
+}
+
+.avatar_about{
+    width: 450px;
+    height: 450px;
+}
