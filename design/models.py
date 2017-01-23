@@ -24,3 +24,7 @@ class Feedback(models.Model):
     def __str__(self):
         return self.name
 
+
+class InfoInMainPage(models.Model):
+    about_me = models.TextField()
+    avatar = models.ImageField(upload_to='images/')

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PhotoModel, Feedback
+from .models import PhotoModel, Feedback, InfoInMainPage
 from design.forms import ContactForm
 from django.db import models
 from django.forms import widgets
@@ -18,7 +18,11 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_display = ["from_email", "create_date"]
 
 
+class MainPageAdmin(admin.ModelAdmin):
+    model = InfoInMainPage
+
+
 admin.site.register(PhotoModel, PhotoModelAdmin)
 admin.site.register(Feedback)
-
+admin.site.register(InfoInMainPage)
 

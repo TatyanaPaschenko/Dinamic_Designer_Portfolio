@@ -21,7 +21,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
         <a href="#" onclick="w3_close()" class="w3-hide-large w3-right w3-jumbo w3-padding" title="close menu">
             <i class="fa fa-remove"></i>
         </a>
-        <a href="{% url 'design:index' %}"><img src={% static "images/avatar.jpg" %} style="width:65%;" class="w3-round"></a><br><br>
+        {% for object in main_info %}
+        <a href="{% url 'design:index' %}"><img src="{{ object.avatar.url }}"  style="width:65%;" class="w3-round"></a><br><br>
+        {% endfor %}
         <h3 class="w3-padding-0"><b>Ann Nerush</b></h3>
         <br>
         <br>
@@ -50,8 +52,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
 
     <!-- Header -->
     <header class="w3-container" id="portfolio">
-        <a href="#"><img src="/static/images/avatar.jpg" style="width:55px;"
+        {% for object in main_info %}
+        <a href="#"><img src="{{ object.avatar.url }}" style="width:55px;"
                          class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"></a>
+        {% endfor %}
         <span class="w3-opennav w3-hide-large w3-xxlarge w3-hover-text-grey" onclick="w3_open()"><i class="fa fa-bars"></i></span>
         <br>
         <h1><b>My Portfolio</b></h1>

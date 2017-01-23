@@ -10,7 +10,7 @@ from portfolio import settings
 from portfolio.settings import STATIC_PATH
 import os
 
-from design.models import PhotoModel, Feedback
+from design.models import PhotoModel, Feedback, InfoInMainPage
 from design.forms import ContactForm
 
 
@@ -23,25 +23,23 @@ class MainPageView(CreateView):
     def form_valid(self, form):
         s = super().form_valid(form)
         messages.success(self.request, "Thank you for your message! I will keep in touch with you very soon!")
-        send_mail(self.object.subject, self.object.message, self.object.from_email, settings.ADMINS)
+        send_mail(self.object.name, self.object.message, self.object.email, settings.ADMINS)
         return s
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object_list'] = PhotoModel.objects.all()
+        context['main_info'] = InfoInMainPage.objects.all()
         return context
 
-# class IncludeContactFormView(CreateView):
-#     template_name = '/contact_me.html'
-#     model = Feedback
-#     success_url = reverse_lazy('design:index')
-#     form_class = ContactForm
+# class MainPageView(ListView):
+#     template_name = 'design/index.html'
+#     model = PhotoModel
 #
-#     def form_valid(self, form):
-#         s = super().form_valid(form)
-#         messages.success(self.request, "Thank you for your feedback! We will keep in touch with you very soon!")
-#         send_mail(self.object.subject, self.object.message, self.object.from_email, settings.ADMINS)
-#         return s
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['main_info'] = InfoInMainPage.objects.all()
+#         return context
 
 
 class ProjectDetailView(DetailView):
@@ -51,6 +49,7 @@ class ProjectDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object_list'] = PhotoModel.objects.all()
+        context['main_info'] = InfoInMainPage.objects.all()
         return context
 
 

@@ -22,17 +22,18 @@
     <!-- Images of Me -->
     <div class="w3-row-padding w3-padding-16" >
         <div class="w3-col m6">
-            <img src="{% static 'images/avatar.jpg' %}" alt="Me" id="about" class="avatar_about"/>
+            {% for object in main_info %}
+            <img src="{{ object.avatar.url }}" alt="Me" id="about" class="avatar_about"/>
+            {% endfor %}
         </div>
     </div>
 
     <div class="w3-container w3-padding-large">
         <h4><b>About Me</b></h4>
-        <p>Just me, myself and I, exploring the universe of unknownment. I have a heart of love and an interest of lorem
-            ipsum and mauris neque quam blog. I want to share my world with you. Praesent tincidunt sed tellus ut
-            rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.
-            Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue
-            gravida diam non fringilla.</p>
+        {% for object in main_info %}
+        <p>{{ object.about_me }}</p>
+        {% endfor %}
+
         <hr>
 
         <h4>Technical Skills</h4>
@@ -62,16 +63,7 @@
 
 {% block contact_me %}
 {% include 'include/message_include.html' %}
-        <form method="post" action="form.asp" target="_blank" >
-            {% csrf_token %}
-            {% for field in form %}
-            <label>{{ field.label }}</label><br>
-            <div >
-            <i class="field" required >{{ field }}</i><br><br>
-            </div>
-            {% endfor %}
-            <br>
-            <input type="submit" class="w3-btn w3-padding-large w3-margin-bottom button_send_message" class="button"  value="Send Message" />
-        </form>
+{% include 'include/contact_form_include.html' %}
+
 {% endblock contact_me %}
 
