@@ -15,16 +15,6 @@ class PhotoModel(models.Model):
         return self.name
 
 
-class Feedback(models.Model):
-    name = models.CharField(max_length=200)
-    message = models.CharField(max_length= 400)
-    email = models.EmailField()
-    create_date = models.DateField(auto_now=True)
-
-    def __str__(self):
-        return self.name
-
-
 class InfoInMainPage(models.Model):
     about_me = models.TextField()
     avatar = models.ImageField(upload_to='images/')

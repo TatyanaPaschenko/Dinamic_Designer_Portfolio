@@ -29,9 +29,6 @@
 
 {% endblock content %}
 {% block contact_me %}
-    <p>
-        <a class="w3-btn w3-padding-large w3-margin-bottom button_send_message" class="button" href="/#contact">
-                <i class="fa fa-paper-plane w3-margin-right"></i>Send Message
-        </a>
-    </p>
+{% include 'include/message_include.html' %}
+{% include 'include/contact_form_include.html' %}
 {% endblock contact_me %}

@@ -1,56 +1,31 @@
-from django.contrib import messages
-from django.core.mail import send_mail
 from django.http import HttpResponse
-from django.urls import reverse_lazy
-from django.views.generic import CreateView
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
-from portfolio import settings
 from portfolio.settings import STATIC_PATH
 import os
 
-from design.models import PhotoModel, Feedback, InfoInMainPage
-from design.forms import ContactForm
+from design.models import PhotoModel, InfoInMainPage
+from contactme.forms import ContactForm
 
 
-class MainPageView(CreateView):
-    template_name = 'design/index.html'
-    model = Feedback
-    success_url = reverse_lazy('design:index')
-    form_class = ContactForm
-
-    def form_valid(self, form):
-        s = super().form_valid(form)
-        messages.success(self.request, "Thank you for your message! I will keep in touch with you very soon!")
-        send_mail(self.object.name, self.object.message, self.object.email, settings.ADMINS)
-        return s
-
+class ContextInfoMixin:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['object_list'] = PhotoModel.objects.all()
         context['main_info'] = InfoInMainPage.objects.all()
+        context['form'] = ContactForm
         return context
 
-# class MainPageView(ListView):
-#     template_name = 'design/index.html'
-#     model = PhotoModel
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['main_info'] = InfoInMainPage.objects.all()
-#         return context
 
-
-class ProjectDetailView(DetailView):
-    template_name = 'design/detail.html'
+class MainPageView(ContextInfoMixin, ListView):
+    template_name = 'design/index.html'
     model = PhotoModel
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['object_list'] = PhotoModel.objects.all()
-        context['main_info'] = InfoInMainPage.objects.all()
-        return context
+
+class ProjectDetailView(ContextInfoMixin, DetailView):
+    template_name = 'design/detail.html'
+    model = PhotoModel
 
 
 def download(request):
