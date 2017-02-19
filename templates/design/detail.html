@@ -24,6 +24,9 @@
 
     <img src= "{{ object.first_image_comp.url }}" alt="First" style="width:1300px"><br><br>
     <img src=" {{ object.first_or_lending_image.url }}" alt="Landing" style="width:1300px"><br><br>
+    {% if object.second_image.url != False %}
+    <img src= "{{ object.second_image.url }}" alt="First" style="width:1300px"><br><br>
+    {% endif %}
 
 </div>
 

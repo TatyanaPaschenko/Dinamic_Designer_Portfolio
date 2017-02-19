@@ -9,7 +9,7 @@ class PhotoModel(models.Model):
     mini_image_title = models.ImageField(upload_to='images/', height_field=None, width_field=None)
     first_image_comp = models.ImageField(upload_to='images/', height_field=None, width_field=None)
     first_or_lending_image = models.ImageField(upload_to='images/', height_field=None, width_field=None)
-    second_image = models.ImageField(upload_to='images/', height_field=None, width_field=None)
+    second_image = models.ImageField(upload_to='images/', height_field=None, width_field=None, blank=True, null=True)
 
     def __str__(self):
         return self.name
